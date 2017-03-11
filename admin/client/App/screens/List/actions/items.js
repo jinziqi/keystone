@@ -2,6 +2,7 @@ import {
 	LOAD_ITEMS,
 	ITEMS_LOADED,
 	ITEM_LOADING_ERROR,
+    ITEM_MASS_UPDATE
 } from '../constants';
 
 import { NETWORK_ERROR_RETRY_DELAY } from '../../../../constants';
@@ -116,4 +117,14 @@ export function deleteItems (ids) {
 			dispatch(loadItems());
 		});
 	};
+}
+
+
+export function updateItems (ids) {
+    return (dispatch, getState) => {
+        dispatch({
+            type: ITEM_MASS_UPDATE,
+			ids: ids
+        });
+    };
 }

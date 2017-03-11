@@ -61,6 +61,12 @@ export function loadItemData () {
 	};
 }
 
+export function loadNothing() {
+	return (dispatch, getState) => {
+        dispatch(dataLoaded({}));
+	}
+}
+
 export function loadRelationshipItemData ({ columns, refList, relationship, relatedItemId }) {
 	return (dispatch, getState) => {
 		refList.loadItems({

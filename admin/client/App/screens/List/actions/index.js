@@ -58,6 +58,7 @@ import {
 	itemsLoaded,
 	itemLoadingError,
 	deleteItems,
+	updateItems,
 	downloadItems,
 } from './items';
 
@@ -81,6 +82,7 @@ export {
 	itemsLoaded,
 	itemLoadingError,
 	deleteItems,
+    updateItems,
 	setDragBase,
 	resetItems,
 	reorderItems,

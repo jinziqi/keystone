@@ -21,6 +21,7 @@ import RelatedItemsList from './components/RelatedItemsList/RelatedItemsList';
 import {
 	selectItem,
 	loadItemData,
+	loadNothing
 } from './actions';
 
 import {
@@ -56,6 +57,11 @@ var ItemView = React.createClass({
 	},
 	// Initialize an item
 	initializeItem (itemId) {
+		if(!itemId) {
+            this.props.dispatch(loadNothing());
+            return;
+		}
+
 		this.props.dispatch(selectItem(itemId));
 		this.props.dispatch(loadItemData());
 	},

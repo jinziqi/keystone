@@ -23,3 +23,6 @@ export const RESET_DRAG_ITEMS = 'app/List/RESET_DRAG_ITEMS';
 export const SET_DRAG_ITEM = 'app/List/SET_DRAG_ITEM';
 export const SET_DRAG_INDEX = 'app/List/SET_DRAG_INDEX';
 export const DRAG_MOVE_ITEM = 'app/List/DRAG_MOVE_ITEM';
+
+
+export const ITEM_MASS_UPDATE = 'app/List/MASS_UPDATE';

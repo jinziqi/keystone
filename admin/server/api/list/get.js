@@ -4,11 +4,12 @@ var listToArray = require('list-to-array');
 
 module.exports = function (req, res) {
 
-    if(req.list.key === 'User' || req.list.key === 'Role') {
-        res.json('Forbidden');
-        return;
+    if(!req.user.isAdmin) {
+        if(req.list.key === 'User' || req.list.key === 'Role') {
+            res.json('Forbidden');
+            return;
+        }
     }
-
 
 	var where = {};
 	var fields = req.query.fields;

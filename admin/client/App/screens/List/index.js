@@ -33,6 +33,7 @@ import { listsByPath } from '../../../utils/lists';
 
 import {
 	deleteItems,
+	updateItems,
 	setActiveColumns,
 	setActiveSearch,
 	setActiveSort,
@@ -172,8 +173,14 @@ const ListView = React.createClass({
 		});
 	},
 	massUpdate () {
-		// TODO: Implement update multi-item
-		console.log('Update ALL the things!');
+        const { checkedItems } = this.state;
+
+        const itemIds = Object.keys(checkedItems);
+        this.props.dispatch(updateItems(itemIds));
+
+
+        const list = this.props.currentList;
+        this.context.router.push(`${Keystone.adminPath}/${list.path}/update`);
 	},
 	massDelete () {
 		const { checkedItems } = this.state;
@@ -348,7 +355,7 @@ const ListView = React.createClass({
 		// a spinner.
 		this.setState({ selectAllItemsLoading: true });
 		var self = this;
-		this.props.currentList.loadItems({ expandRelationshipFilters: false, filters: {} }, function (err, data) {
+		this.props.currentList.loadItems({ expandRelationshipFilters: false, filters: {}, page:{size:5000} }, function (err, data) {
 			data.results.forEach(item => {
 				checkedItems[item.id] = true;
 			});

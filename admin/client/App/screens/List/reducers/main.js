@@ -12,6 +12,7 @@ import {
 	SET_DRAG_ITEM,
 	SET_DRAG_INDEX,
 	DRAG_MOVE_ITEM,
+    ITEM_MASS_UPDATE
 } from '../constants';
 
 import {
@@ -212,6 +213,11 @@ function lists (state = initialState, action) {
 					results: itemsWithoutItem,
 				},
 			});
+
+		case ITEM_MASS_UPDATE:
+            return assign({}, state, {
+                massUpdate: action.ids,
+            });
 		default:
 			return state;
 	}
