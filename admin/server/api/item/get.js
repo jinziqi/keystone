@@ -102,6 +102,32 @@ module.exports = function (req, res) {
 			});
 		}
 
+		var permission = {read:[],write:[]};
+		if(req.list.permission && !req.user.isAdmin) {
+            tasks.push(function(cb) {
+                fields = [];
+
+                keystone.list('Role').model.findById(req.user.role).exec(function(err, data) {
+                    var readPermission = data.readPermission ? data.readPermission.split('|') : [];
+                    var writePermission = data.writePermission ? data.writePermission.split('|') : [];
+                    for(key in req.list.fields) {
+                    	var field = req.list.fields[key];
+                    	if(readPermission.indexOf(field.label) > -1) {
+                    		fields.push(key);
+                    		permission.read.push(key);
+						}
+                        if(writePermission.indexOf(field.label) > -1) {
+                            permission.write.push(key);
+                        }
+
+					}
+                    cb();
+                });
+
+            });
+		}
+
+
 		/* Process tasks & return */
 		async.parallel(tasks, function (err) {
 			if (err) {
@@ -110,9 +136,12 @@ module.exports = function (req, res) {
 					detail: err,
 				});
 			}
-			res.json(_.assign(req.list.getData(item, fields), {
-				drilldown: drilldown,
-			}));
+			var return_data = _.assign(req.list.getData(item, fields), {
+                drilldown: drilldown,
+            });
+			if(req.list.permission && !req.user.isAdmin)
+				return_data.permission = permission;
+			res.json(return_data);
 		});
 	});
 };

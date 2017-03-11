@@ -228,6 +228,7 @@ const ListView = React.createClass({
 			<ListManagement
 				checkedItemCount={Object.keys(checkedItems).length}
 				handleDelete={this.massDelete}
+				handleUpdate={this.massUpdate}
 				handleSelect={this.handleManagementSelect}
 				handleToggle={() => this.toggleManageMode(!manageMode)}
 				isOpen={manageMode}

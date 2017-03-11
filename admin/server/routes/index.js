@@ -24,6 +24,11 @@ module.exports = function IndexRoute (req, res) {
 		backUrl = '/';
 	}
 
+	if(!req.user.isAdmin) {
+		keystone.nav.sections.splice(1);
+		keystone.nav.sections[0]
+	}
+
 	var keystoneData = {
 		adminPath: '/' + keystone.get('admin path'),
 		appversion: keystone.get('appversion'),

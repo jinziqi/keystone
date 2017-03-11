@@ -10,6 +10,7 @@ import {
 function ListManagement ({
 	checkedItemCount,
 	handleDelete,
+    handleUpdate,
 	handleSelect,
 	handleToggle,
 	isOpen,
@@ -37,6 +38,15 @@ function ListManagement ({
 				position="left"
 				variant="link">
 				Delete
+			</GlyphButton>
+			<GlyphButton
+				color="cancel"
+				disabled={!checkedItemCount}
+				glyph="trashcan"
+				onClick={handleUpdate}
+				position="left"
+				variant="link">
+				Update
 			</GlyphButton>
 		</Section>
 	);
@@ -102,6 +112,7 @@ function ListManagement ({
 ListManagement.propTypes = {
 	checkedItems: PropTypes.number,
 	handleDelete: PropTypes.func.isRequired,
+    handleUpdate: PropTypes.func.isRequired,
 	handleSelect: PropTypes.func.isRequired,
 	handleToggle: PropTypes.func.isRequired,
 	isOpen: PropTypes.bool,

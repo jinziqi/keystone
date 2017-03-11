@@ -245,6 +245,15 @@ var EditForm = React.createClass({
 			if (el.type === 'field') {
 				var field = this.props.list.fields[el.field];
 				var props = this.getFieldProps(field);
+
+
+				if(this.props.data.permission && this.props.data.permission.read.indexOf(field.path) === -1) {
+					return;
+				}
+                if(this.props.data.permission && this.props.data.permission.write.indexOf(field.path) === -1) {
+                    props.noedit = true;
+                }
+
 				if (typeof Fields[field.type] !== 'function') {
 					return React.createElement(InvalidFieldType, { type: field.type, path: field.path, key: field.path });
 				}
@@ -252,6 +261,7 @@ var EditForm = React.createClass({
 				if (index === 0 && this.state.focusFirstField) {
 					props.autoFocus = true;
 				}
+
 				return React.createElement(Fields[field.type], props);
 			}
 		}, this);
