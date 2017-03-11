@@ -37,7 +37,7 @@ function ListManagement ({
 				onClick={handleDelete}
 				position="left"
 				variant="link">
-				Delete
+				删除
 			</GlyphButton>
 			<GlyphButton
 				color="cancel"
@@ -46,7 +46,7 @@ function ListManagement ({
 				onClick={handleUpdate}
 				position="left"
 				variant="link">
-				Update
+				更新
 			</GlyphButton>
 		</Section>
 	);
@@ -72,12 +72,12 @@ function ListManagement ({
 				{selectAllButton}
 				<Section>
 					<Button active={pageVisibleButtonIsActive} onClick={() => handleSelect('visible')} title="Select all rows">
-						{itemCount > itemsPerPage ? 'Page ' : 'All '}
+						{itemCount > itemsPerPage ? 'Page ' : '全选 '}
 						<small style={buttonNoteStyles}>({itemCount > itemsPerPage ? itemsPerPage : itemCount})</small>
 					</Button>
 				</Section>
 				<Section>
-					<Button active={noneButtonIsActive} onClick={() => handleSelect('none')} title="Deselect all rows">None</Button>
+					<Button active={noneButtonIsActive} onClick={() => handleSelect('none')} title="Deselect all rows">取消全选</Button>
 				</Section>
 			</Group>
 		</Section>
@@ -87,7 +87,7 @@ function ListManagement ({
 	const selectedCountText = isOpen ? (
 		<Section>
 			<span style={{ color: '#666', display: 'inline-block', lineHeight: '2.4em', margin: 1 }}>
-				{checkedItemCount} selected
+				选中 {checkedItemCount} 个
 			</span>
 		</Section>
 	) : null;
@@ -98,7 +98,7 @@ function ListManagement ({
 			<Group style={{ float: 'left', marginRight: '.75em', marginBottom: 0 }}>
 				<Section>
 					<Button active={isOpen} onClick={() => handleToggle(!isOpen)}>
-						Manage
+						管理
 					</Button>
 				</Section>
 				{selectButtons}

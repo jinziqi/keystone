@@ -151,7 +151,7 @@ var ListDownloadForm = React.createClass({
 					active={this.state.isOpen}
 					id="listHeaderDownloadButton"
 					glyph="cloud-download"
-					label="Download"
+					label="下载"
 					onClick={() => this.togglePopout(!this.state.isOpen)}
 				/>
 				<Popout isOpen={this.state.isOpen} onCancel={() => this.togglePopout(false)} relativeToID="listHeaderDownloadButton">

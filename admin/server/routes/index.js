@@ -26,7 +26,6 @@ module.exports = function IndexRoute (req, res) {
 
 	if(!req.user.isAdmin) {
 		keystone.nav.sections.splice(1);
-		keystone.nav.sections[0]
 	}
 
 	var keystoneData = {
@@ -43,6 +42,7 @@ module.exports = function IndexRoute (req, res) {
 		user: {
 			id: req.user.id,
 			name: UserList.getDocumentName(req.user) || '(no name)',
+			isAdmin: req.user.isAdmin
 		},
 		userList: UserList.key,
 		version: keystone.version,

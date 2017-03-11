@@ -3,6 +3,13 @@ var assign = require('object-assign');
 var listToArray = require('list-to-array');
 
 module.exports = function (req, res) {
+
+    if(req.list.key === 'User' || req.list.key === 'Role') {
+        res.json('Forbidden');
+        return;
+    }
+
+
 	var where = {};
 	var fields = req.query.fields;
 	var includeCount = req.query.count !== 'false';

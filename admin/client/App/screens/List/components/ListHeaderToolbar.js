@@ -39,7 +39,7 @@ function CreateButton ({ listName, onClick, ...props }) {
 			<ResponsiveText
 				visibleSM="Create"
 				visibleMD="Create"
-				visibleLG={`Create ${listName}`}
+				visibleLG={`新建 ${listName}`}
 			/>
 		</GlyphButton>
 	);
@@ -87,27 +87,30 @@ function ListHeaderToolbar ({
 			</Section>
 			<Section grow aphroditeStyles={classes.buttons}>
 				<Group block>
+                    {Keystone.user.isAdmin &&
 					<Section aphroditeStyles={classes.filter}>
 						<ListFiltersAdd
 							dispatch={dispatch}
 							activeFilters={filtersActive}
 							availableFilters={filtersAvailable}
 						/>
-					</Section>
+					</Section>}
+                    {Keystone.user.isAdmin &&
 					<Section aphroditeStyles={classes.columns}>
 						<ListColumnsForm
 							availableColumns={columnsAvailable}
 							activeColumns={columnsActive}
 							dispatch={dispatch}
 						/>
-					</Section>
+					</Section>}
+                    {Keystone.user.isAdmin &&
 					<Section aphroditeStyles={classes.download}>
 						<ListDownloadForm
 							activeColumns={columnsActive}
 							dispatch={dispatch}
 							list={list}
 						/>
-					</Section>
+					</Section>}
 					<Section aphroditeStyles={classes.expand}>
 						<ButtonDivider>
 							<GlyphButton
@@ -118,7 +121,7 @@ function ListHeaderToolbar ({
 							/>
 						</ButtonDivider>
 					</Section>
-					{createIsAvailable && <Section aphroditeStyles={classes.create}>
+					{Keystone.user.isAdmin && createIsAvailable && <Section aphroditeStyles={classes.create}>
 						<ButtonDivider>
 							<CreateButton
 								listName={createListName}

@@ -56,7 +56,7 @@ var Footer = React.createClass({
 						KeystoneJS
 					</a>
 					<span> version {version}.</span>
-					{this.renderUser()}
+
 				</Container>
 			</footer>
 		);

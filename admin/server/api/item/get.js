@@ -6,6 +6,11 @@ module.exports = function (req, res) {
 	var keystone = req.keystone;
 	var query = req.list.model.findById(req.params.id);
 
+	if(req.list.key === 'User' || req.list.key === 'Role') {
+		res.json('Forbidden');
+		return;
+	}
+
 	var fields = req.query.fields;
 	if (fields === 'false') {
 		fields = false;
