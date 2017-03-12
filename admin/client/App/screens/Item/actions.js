@@ -63,7 +63,14 @@ export function loadItemData () {
 
 export function loadNothing() {
 	return (dispatch, getState) => {
-        dispatch(dataLoaded({}));
+        const state = getState();
+        const list = state.lists.currentList;
+        list.loadItem(getState().lists.massUpdate[0], { drilldown: true }, (err, itemData) => {
+        	itemData.fields = {};
+            itemData.massUpdate = getState().lists.massUpdate;
+            dispatch(dataLoaded(itemData));
+        });
+
 	}
 }
 

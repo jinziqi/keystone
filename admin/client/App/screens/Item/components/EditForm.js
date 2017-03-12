@@ -131,31 +131,62 @@ var EditForm = React.createClass({
 		this.setState({
 			loading: true,
 		});
+        console.log(data);
+		if(this.props.data.massUpdate) {
+			formData.append('ids', this.props.data.massUpdate);
+            list.updateItem("bulk", formData, (err, data) => {
+                smoothScrollTop();
+                if (err) {
+                    this.setState({
+                        alerts: {
+                            error: err,
+                        },
+                        loading: false,
+                    });
+                } else {
+                    // Success, display success flash messages, replace values
+                    // TODO: Update key value
+                    this.setState({
+                        alerts: {
+                            success: {
+                                success: 'Your changes have been saved successfully',
+                            },
+                        },
+                        lastValues: this.state.values,
+                        values: data.fields,
+                        loading: false,
+                    });
+                }
+            });
 
-		list.updateItem(data.id, formData, (err, data) => {
-			smoothScrollTop();
-			if (err) {
-				this.setState({
-					alerts: {
-						error: err,
-					},
-					loading: false,
-				});
-			} else {
-				// Success, display success flash messages, replace values
-				// TODO: Update key value
-				this.setState({
-					alerts: {
-						success: {
-							success: 'Your changes have been saved successfully',
-						},
-					},
-					lastValues: this.state.values,
-					values: data.fields,
-					loading: false,
-				});
-			}
-		});
+		} else {
+            list.updateItem(data.id, formData, (err, data) => {
+                smoothScrollTop();
+                if (err) {
+                    this.setState({
+                        alerts: {
+                            error: err,
+                        },
+                        loading: false,
+                    });
+                } else {
+                    // Success, display success flash messages, replace values
+                    // TODO: Update key value
+                    this.setState({
+                        alerts: {
+                            success: {
+                                success: 'Your changes have been saved successfully',
+                            },
+                        },
+                        lastValues: this.state.values,
+                        values: data.fields,
+                        loading: false,
+                    });
+                }
+            });
+		}
+
+
 	},
 	renderKeyOrId () {
 		var className = 'EditForm__key-or-id';
