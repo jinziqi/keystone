@@ -25,6 +25,9 @@ const history = syncHistoryWithStore(browserHistory, store);
 import { listsByKey } from '../utils/lists';
 Keystone.User = listsByKey[Keystone.userList];
 
+if(!Keystone.user.isAdmin)
+    Keystone.nav.sections.splice(1);
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={history}>
