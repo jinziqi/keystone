@@ -42,7 +42,7 @@ function ListManagement ({
 			<GlyphButton
 				color="cancel"
 				disabled={!checkedItemCount}
-				glyph="trashcan"
+				glyph="pencil"
 				onClick={handleUpdate}
 				position="left"
 				variant="link">

@@ -57,12 +57,13 @@ var ItemView = React.createClass({
 	},
 	// Initialize an item
 	initializeItem (itemId) {
-		if(!itemId) {
+        this.props.dispatch(selectItem(itemId));
+
+        if(!itemId) {
             this.props.dispatch(loadNothing());
             return;
 		}
 
-		this.props.dispatch(selectItem(itemId));
 		this.props.dispatch(loadItemData());
 	},
 	// Called when a new item is created

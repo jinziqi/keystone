@@ -131,7 +131,7 @@ var EditForm = React.createClass({
 		this.setState({
 			loading: true,
 		});
-        console.log(data);
+
 		if(this.props.data.massUpdate) {
 			formData.append('ids', this.props.data.massUpdate);
             list.updateItem("bulk", formData, (err, data) => {

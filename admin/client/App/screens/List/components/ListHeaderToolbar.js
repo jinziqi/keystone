@@ -87,14 +87,13 @@ function ListHeaderToolbar ({
 			</Section>
 			<Section grow aphroditeStyles={classes.buttons}>
 				<Group block>
-                    {Keystone.user.isAdmin &&
 					<Section aphroditeStyles={classes.filter}>
 						<ListFiltersAdd
 							dispatch={dispatch}
 							activeFilters={filtersActive}
 							availableFilters={filtersAvailable}
 						/>
-					</Section>}
+					</Section>
                     {Keystone.user.isAdmin &&
 					<Section aphroditeStyles={classes.columns}>
 						<ListColumnsForm
