@@ -30,6 +30,7 @@ function ListManagement ({
 	// delete button
 	const actionButtons = isOpen && (
 		<Section>
+			{Keystone.user.isAdmin &&
 			<GlyphButton
 				color="cancel"
 				disabled={!checkedItemCount}
@@ -38,7 +39,7 @@ function ListManagement ({
 				position="left"
 				variant="link">
 				删除
-			</GlyphButton>
+			</GlyphButton>}
 			<GlyphButton
 				color="cancel"
 				disabled={!checkedItemCount}

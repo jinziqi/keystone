@@ -31,6 +31,8 @@ var ListControl = React.createClass({
 		);
 		if (this.props.dragSource) {
 			return this.props.dragSource(renderButton);
+		} else if (!Keystone.user.isAdmin && this.props.type === 'delete') {
+			return '';
 		} else {
 			return renderButton;
 		}

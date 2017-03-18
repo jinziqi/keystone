@@ -275,6 +275,9 @@ var EditForm = React.createClass({
 
 			if (el.type === 'field') {
 				var field = this.props.list.fields[el.field];
+				if(!field)
+					return;
+
 				var props = this.getFieldProps(field);
 
 
