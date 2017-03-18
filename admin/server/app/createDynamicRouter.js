@@ -80,7 +80,7 @@ module.exports = function createDynamicRouter (keystone) {
 	// lists
 	router.all('/api/counts', require('../api/counts'));
 	router.get('/api/:list', initList, require('../api/list/get'));
-	router.get('/api/:list/:format(export.csv|export.json)', initList, require('../api/list/download'));
+	router.get('/api/:list/:format(export.xlsx|export.json)', initList, require('../api/list/download'));
 	router.post('/api/:list/create', initList, require('../api/list/create'));
 	router.post('/api/:list/update', initList, require('../api/list/update'));
 	router.post('/api/:list/delete', initList, require('../api/list/delete'));

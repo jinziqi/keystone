@@ -4,6 +4,7 @@ TODO: Needs Review and Spec
 
 var moment = require('moment');
 var assign = require('object-assign');
+var XLSX = require('xlsx');
 
 module.exports = function (req, res) {
 	var baby = require('babyparse');
@@ -37,8 +38,44 @@ module.exports = function (req, res) {
 		var data;
 		var fields = [];
 		if (err) return res.apiError('database error', err);
-		if (format === 'csv') {
-			data = results.map(function (item) {
+		if (format === 'xlsx') {
+            var sheet_from_array_of_arrays = function(data, opts) {
+                var ws = {};
+                var range = {s: {c:10000000, r:10000000}, e: {c:0, r:0 }};
+                for(var R = 0; R != data.length; ++R) {
+                    for(var C = 0; C != data[R].length; ++C) {
+                        if(range.s.r > R) range.s.r = R;
+                        if(range.s.c > C) range.s.c = C;
+                        if(range.e.r < R) range.e.r = R;
+                        if(range.e.c < C) range.e.c = C;
+                        var cell = {v: data[R][C] };
+                        if(cell.v == null) continue;
+                        var cell_ref = XLSX.utils.encode_cell({c:C,r:R});
+
+						/* TEST: proper cell types and value handling */
+                        if(typeof cell.v === 'number') cell.t = 'n';
+                        else if(typeof cell.v === 'boolean') cell.t = 'b';
+                        else if(cell.v instanceof Date) {
+                            cell.t = 'n'; cell.z = XLSX.SSF._table[14];
+                            cell.v = datenum(cell.v);
+                        }
+                        else cell.t = 's';
+                        ws[cell_ref] = cell;
+                    }
+                }
+
+				/* TEST: proper range */
+                if(range.s.c < 10000000) ws['!ref'] = XLSX.utils.encode_range(range);
+                return ws;
+            }
+
+            var wb = {};
+            wb.Sheets = {};
+            wb.Props = {};
+            wb.SSF = {};
+            wb.SheetNames = [];
+
+            data = results.map(function (item) {
 				var row = req.list.getCSVData(item, {
 					expandRelationshipFields: req.query.expandRelationshipFields,
 					fields: req.query.select,
@@ -53,15 +90,29 @@ module.exports = function (req, res) {
 				});
 				return row;
 			});
-			res.attachment(req.list.path + '-' + moment().format('YYYYMMDD-HHMMSS') + '.csv');
-			res.setHeader('Content-Type', 'application/octet-stream');
-			var content = baby.unparse({
-				data: data,
-				fields: fields,
-			}, {
-				delimiter: keystone.get('csv field delimiter') || ',',
-			});
-			res.end(content, 'utf-8');
+
+            var excelData = [fields];
+
+          	for(var i in data) {
+          		var row = [];
+          		for(var f in fields) {
+          			row.push(data[i][fields[f]]);
+				}
+				excelData.push(row);
+			}
+
+            var ws = sheet_from_array_of_arrays(excelData);
+            var ws_name = "Sheet1";
+            wb.SheetNames.push(ws_name);
+            wb.Sheets[ws_name] = ws;
+            var wbbuf = XLSX.write(wb, {
+                type: 'base64'
+            });
+
+
+			res.attachment(req.list.path + '-' + moment().format('YYYYMMDD-HHMMSS') + '.xlsx');
+            res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            res.end( new Buffer(wbbuf, 'base64') );
 		} else {
 			data = results.map(function (item) {
 				return req.list.getData(item, req.query.select, req.query.expandRelationshipFields);

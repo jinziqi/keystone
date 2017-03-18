@@ -278,7 +278,7 @@ List.prototype.getDownloadURL = function (options) {
 	const url = Keystone.adminPath + '/api/' + this.path;
 	const parts = [];
 	if (options.format !== 'json') {
-		options.format = 'csv';
+		options.format = 'xlsx';
 	}
 	parts.push(options.search ? 'search=' + options.search : '');
 	parts.push(options.filters.length ? 'filters=' + JSON.stringify(getFilters(options.filters)) : '');
