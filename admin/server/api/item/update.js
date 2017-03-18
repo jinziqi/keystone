@@ -6,7 +6,14 @@ module.exports = function (req, res) {
 	req.list.model.findById(req.params.id, function (err, item) {
 		if (err) return res.status(500).json({ error: 'database error', detail: err });
 		if (!item) return res.status(404).json({ error: 'not found', id: req.params.id });
-		req.list.updateItem(item, req.body, { files: req.files, user: req.user, fields:Object.keys(req.body) }, function (err) {
+
+        var fields = Object.keys(req.body);
+		if(req.list.key === 'Case') {
+            fields.push('updatedAt');
+            fields.push('updatedBy');
+		}
+
+		req.list.updateItem(item, req.body, { files: req.files, user: req.user, fields:fields }, function (err) {
 			if (err) {
 				var status = err.error === 'validation errors' ? 400 : 500;
 				var error = err.error === 'database error' ? err.detail : err;

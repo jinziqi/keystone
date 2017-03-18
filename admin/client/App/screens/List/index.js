@@ -448,7 +448,7 @@ const ListView = React.createClass({
 		// display the button if create allowed
 		const button = !currentList.nocreate ? (
 			<GlyphButton color="success" glyph="plus" position="left" onClick={onClick} data-e2e-list-create-button="no-results">
-				Create {currentList.singular}
+				新建 {currentList.singular}
 			</GlyphButton>
 		) : null;
 
@@ -461,7 +461,7 @@ const ListView = React.createClass({
 						}] }}
 					/>
 				) : null}
-				<BlankState heading={`No ${this.props.currentList.plural.toLowerCase()} found...`} style={{ marginTop: 40 }}>
+				<BlankState heading={`无${this.props.currentList.plural.toLowerCase()} ...`} style={{ marginTop: 40 }}>
 					{button}
 				</BlankState>
 			</Container>

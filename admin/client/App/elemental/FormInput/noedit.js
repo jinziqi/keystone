@@ -65,7 +65,7 @@ const classes = StyleSheet.create({
 		// prevent empty inputs from collapsing by adding content
 		':empty:before': {
 			color: theme.color.gray40,
-			content: '"(no value)"',
+			content: '"(无内容)"',
 		},
 	},
 

@@ -149,7 +149,7 @@ var EditForm = React.createClass({
                     this.setState({
                         alerts: {
                             success: {
-                                success: 'Your changes have been saved successfully',
+                                success: '成功保存更新',
                             },
                         },
                         lastValues: this.state.values,
@@ -175,7 +175,7 @@ var EditForm = React.createClass({
                     this.setState({
                         alerts: {
                             success: {
-                                success: 'Your changes have been saved successfully',
+                                success: '成功保存更新',
                             },
                         },
                         lastValues: this.state.values,
@@ -306,7 +306,7 @@ var EditForm = React.createClass({
 		}
 
 		const { loading } = this.state;
-		const loadingButtonText = loading ? 'Saving' : 'Save';
+		const loadingButtonText = loading ? '保存中' : '保存';
 
 		// Padding must be applied inline so the FooterBar can determine its
 		// innerHeight at runtime. Aphrodite's styling comes later...
@@ -328,16 +328,16 @@ var EditForm = React.createClass({
 					{!this.props.list.noedit && (
 						<Button disabled={loading} onClick={this.toggleResetDialog} variant="link" color="cancel" data-button="reset">
 							<ResponsiveText
-								hiddenXS="reset changes"
-								visibleXS="reset"
+								hiddenXS="重置"
+								visibleXS="重置"
 							/>
 						</Button>
 					)}
 					{!this.props.list.nodelete && (
 						<Button disabled={loading} onClick={this.toggleDeleteDialog} variant="link" color="delete" style={styles.deleteButton} data-button="delete">
 							<ResponsiveText
-								hiddenXS={`delete ${this.props.list.singular.toLowerCase()}`}
-								visibleXS="delete"
+								hiddenXS={`删除${this.props.list.singular.toLowerCase()}`}
+								visibleXS="删除"
 							/>
 						</Button>
 					)}
@@ -430,23 +430,23 @@ var EditForm = React.createClass({
 				</Grid.Row>
 				{this.renderFooterBar()}
 				<ConfirmationDialog
-					confirmationLabel="Reset"
+					confirmationLabel="重置"
 					isOpen={this.state.resetDialogIsOpen}
 					onCancel={this.toggleResetDialog}
 					onConfirmation={this.handleReset}
 				>
-					<p>Reset your changes to <strong>{this.props.data.name}</strong>?</p>
+					<p>是否确定要重置 <strong>{this.props.data.name}</strong>?</p>
 				</ConfirmationDialog>
 				<ConfirmationDialog
-					confirmationLabel="Delete"
+					confirmationLabel="删除"
 					isOpen={this.state.deleteDialogIsOpen}
 					onCancel={this.toggleDeleteDialog}
 					onConfirmation={this.handleDelete}
 				>
-					Are you sure you want to delete <strong>{this.props.data.name}?</strong>
+					是否确定要删除 <strong>{this.props.data.name}?</strong>
 					<br />
 					<br />
-					This cannot be undone.
+					此操作无法撤销.
 				</ConfirmationDialog>
 			</form>
 		);
