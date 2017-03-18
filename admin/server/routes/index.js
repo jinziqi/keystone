@@ -24,14 +24,22 @@ module.exports = function IndexRoute (req, res) {
 			if(!req.user.isAdmin && key === 'Case') {
 				var readPermission = userRole.readPermission ? userRole.readPermission.split('|') : [];
 				var fields = {};
+				var uiElements = [];
 				_.forEach(lists[key].fields, function (field, key) {
 					if(readPermission.indexOf(field.label) !== -1) {
 						fields[key] = field;
 					}
-				})
+				});
 				lists[key].fields = fields;
 
                 lists[key].nocreate = !userRole.create;
+
+                _.forEach(lists[key].uiElements, function (el, key) {
+                    if(readPermission.indexOf(el.field) !== -1) {
+                        uiElements.push(el);
+                    }
+                });
+				lists[key].uiElements = uiElements;
 			}
 		});
 

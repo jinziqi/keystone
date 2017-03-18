@@ -94,22 +94,20 @@ function ListHeaderToolbar ({
 							availableFilters={filtersAvailable}
 						/>
 					</Section>
-                    {Keystone.user.isAdmin &&
 					<Section aphroditeStyles={classes.columns}>
 						<ListColumnsForm
 							availableColumns={columnsAvailable}
 							activeColumns={columnsActive}
 							dispatch={dispatch}
 						/>
-					</Section>}
-                    {Keystone.user.isAdmin &&
+					</Section>
 					<Section aphroditeStyles={classes.download}>
 						<ListDownloadForm
 							activeColumns={columnsActive}
 							dispatch={dispatch}
 							list={list}
 						/>
-					</Section>}
+					</Section>
 					<Section aphroditeStyles={classes.expand}>
 						<ButtonDivider>
 							<GlyphButton

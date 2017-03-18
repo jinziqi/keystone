@@ -111,6 +111,29 @@ module.exports = React.createClass({
 			selected: (day) => moment(day).format(this.props.format) === selectedDay,
 		};
 
+        const WEEKDAYS_LONG = {
+            "zh": ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
+        };
+        const WEEKDAYS_SHORT = {
+            "zh": ["一", "二", "三", "四", "五", "六", "日"]
+        };
+
+		const MONTHS = {
+            "zh": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
+        };
+
+        const FIRST_DAY = {
+            "zh": 1 // Use Monday as first day of the week
+        };
+
+        const localeUtils = {
+            formatDay: (d, locale="en") => `${WEEKDAYS_LONG[locale][d.getDay()]}, ${d.getDate()} ${MONTHS[locale][d.getMonth()]} ${d.getFullYear()}`,
+            formatMonthTitle: (d, locale) => `${d.getFullYear()}年 ${MONTHS[locale][d.getMonth()]}`,
+            formatWeekdayShort: (i, locale) => WEEKDAYS_SHORT[locale][i],
+            formatWeekdayLong: (i, locale) => WEEKDAYS_LONG[locale][i],
+            getFirstDayOfWeek: (locale) => FIRST_DAY[locale]
+        };
+
 		return (
 			<div>
 				<FormInput
@@ -137,6 +160,8 @@ module.exports = React.createClass({
 						onDayClick={this.handleDaySelect}
 						ref="picker"
 						tabIndex={-1}
+						locale="zh"
+						localeUtils={ localeUtils }
 					/>
 				</Popout>
 			</div>
