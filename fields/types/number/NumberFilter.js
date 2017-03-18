@@ -9,10 +9,10 @@ import {
 } from '../../../admin/client/App/elemental';
 
 const MODE_OPTIONS = [
-	{ label: 'Exactly', value: 'equals' },
-	{ label: 'Greater Than', value: 'gt' },
-	{ label: 'Less Than', value: 'lt' },
-	{ label: 'Between', value: 'between' },
+	{ label: '等于', value: 'equals' },
+	{ label: '大于', value: 'gt' },
+	{ label: '小于', value: 'lt' },
+	{ label: '两者之间', value: 'between' },
 ];
 
 function getDefaultValue () {
@@ -86,7 +86,7 @@ var NumberFilter = React.createClass({
 	renderControls (mode) {
 		let controls;
 		const { field } = this.props;
-		const placeholder = field.label + ' is ' + mode.label.toLowerCase() + '...';
+		const placeholder = field.label + ' ' + mode.label.toLowerCase() + '...';
 
 		if (mode.value === 'between') {
 			controls = (
@@ -94,7 +94,7 @@ var NumberFilter = React.createClass({
 					<Grid.Col>
 						<FormInput
 							onChange={this.handleChangeBuilder('minValue')}
-							placeholder="Min."
+							placeholder="最小"
 							ref="focusTarget"
 							type="number"
 						/>
@@ -102,7 +102,7 @@ var NumberFilter = React.createClass({
 					<Grid.Col>
 						<FormInput
 							onChange={this.handleChangeBuilder('maxValue')}
-							placeholder="Max."
+							placeholder="最大"
 							type="number"
 						/>
 					</Grid.Col>

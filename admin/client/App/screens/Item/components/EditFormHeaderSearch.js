@@ -41,7 +41,7 @@ class EditFormHeaderSearch extends Component {
 					onBlur={() => this.setState({ focused: false })}
 					onChange={onChange}
 					onKeyUp={onKeyUp}
-					placeholder="Search"
+					placeholder="搜索"
 					ref="target"
 					type="search"
 					value={value}
@@ -60,7 +60,7 @@ class EditFormHeaderSearch extends Component {
 				style={{ paddingLeft: '0.7em' }}
 				data-e2e-search-icon
 				>
-				Search
+				搜索
 			</GlyphButton>
 		);
 	}

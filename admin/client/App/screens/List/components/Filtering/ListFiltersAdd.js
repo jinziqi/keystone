@@ -112,7 +112,7 @@ var ListFiltersAdd = React.createClass({
 					<div style={formFieldStyles}>
 						<FormInput
 							onChange={this.updateSearch}
-							placeholder="Find a filter..."
+							placeholder="查找..."
 							ref="search"
 							value={this.state.searchString}
 						/>

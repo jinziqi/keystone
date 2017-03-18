@@ -24,7 +24,7 @@ const LoginForm = ({
 						value={email}
 					/>
 				</FormField>
-				<FormField label="Password" htmlFor="password">
+				<FormField label="密码" htmlFor="password">
 					<FormInput
 						type="password"
 						name="password"
@@ -33,7 +33,7 @@ const LoginForm = ({
 					/>
 				</FormField>
 				<Button disabled={isAnimating} color="primary" type="submit">
-					Sign In
+					登陆
 				</Button>
 			</Form>
 		</div>

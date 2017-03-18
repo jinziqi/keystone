@@ -9,15 +9,15 @@ import {
 } from '../../../admin/client/App/elemental';
 
 const INVERTED_OPTIONS = [
-	{ label: 'Matches', value: false },
-	{ label: 'Does NOT Match', value: true },
+	{ label: '匹配', value: false },
+	{ label: '不匹配', value: true },
 ];
 
 const MODE_OPTIONS = [
-	{ label: 'Contains', value: 'contains' },
-	{ label: 'Exactly', value: 'exactly' },
-	{ label: 'Begins with', value: 'beginsWith' },
-	{ label: 'Ends with', value: 'endsWith' },
+	{ label: '包含', value: 'contains' },
+	{ label: '等于', value: 'exactly' },
+	{ label: '开头是', value: 'beginsWith' },
+	{ label: '结尾是', value: 'endsWith' },
 ];
 
 function getDefaultValue () {

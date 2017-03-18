@@ -13,8 +13,8 @@ import {
 import PopoutList from '../../../admin/client/App/shared/Popout/PopoutList';
 
 const INVERTED_OPTIONS = [
-	{ label: 'Linked To', value: false },
-	{ label: 'NOT Linked To', value: true },
+	{ label: '关联', value: false },
+	{ label: '不关联', value: true },
 ];
 
 function getDefaultValue () {
@@ -174,7 +174,7 @@ var RelationshipFilter = React.createClass({
 		const searchResults = this.state.searchResults.filter(i => {
 			return this.props.filter.value.indexOf(i.id) === -1;
 		});
-		const placeholder = this.isLoading() ? 'Loading...' : 'Find a ' + this.props.field.label + '...';
+		const placeholder = this.isLoading() ? 'Loading...' : '查找 ' + this.props.field.label + '...';
 		return (
 			<div ref="container">
 				<FormField>
@@ -191,7 +191,7 @@ var RelationshipFilter = React.createClass({
 				) : null}
 				{searchResults.length ? (
 					<PopoutList>
-						<PopoutList.Heading style={selectedItems.length ? { marginTop: '2em' } : null}>Items</PopoutList.Heading>
+						<PopoutList.Heading style={selectedItems.length ? { marginTop: '2em' } : null}>项目</PopoutList.Heading>
 						{this.renderItems(searchResults)}
 					</PopoutList>
 				) : null}

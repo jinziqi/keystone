@@ -39,7 +39,7 @@ var SigninView = React.createClass({
 		e.preventDefault();
 		// If either password or mail are missing, show an error
 		if (!this.state.email || !this.state.password) {
-			return this.displayError('Please enter an email address and password to sign in.');
+			return this.displayError('请输入电子和密码登陆.');
 		}
 
 		xhr({
@@ -54,7 +54,7 @@ var SigninView = React.createClass({
 			if (err || body && body.error) {
 				return body.error === 'invalid csrf'
 					? this.displayError('Something went wrong; please refresh your browser and try again.')
-					: this.displayError('The email and password you entered are not valid.');
+					: this.displayError('电子邮箱或密码错误.');
 			} else {
 				// Redirect to where we came from or to the default admin path
 				if (Keystone.redirect) {
@@ -125,10 +125,7 @@ var SigninView = React.createClass({
 						)}
 					</div>
 				</div>
-				<div className="auth-footer">
-					<span>Powered by </span>
-					<a href="http://keystonejs.com" target="_blank" title="The Node.js CMS and web application platform (new window)">KeystoneJS</a>
-				</div>
+
 			</div>
 		);
 	},

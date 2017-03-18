@@ -122,7 +122,7 @@ var ListDownloadForm = React.createClass({
 		});
 
 		const allColumnsSelected = this.allColumnsSelected();
-		const checkboxLabel = allColumnsSelected ? 'Select None' : 'Select All';
+		const checkboxLabel = allColumnsSelected ? '取消全选' : '全选';
 
 		return (
 			<div>
@@ -154,10 +154,10 @@ var ListDownloadForm = React.createClass({
 					onClick={() => this.togglePopout(!this.state.isOpen)}
 				/>
 				<Popout isOpen={this.state.isOpen} onCancel={() => this.togglePopout(false)} relativeToID="listHeaderDownloadButton">
-					<Popout.Header title="Download" />
+					<Popout.Header title="下载" />
 					<Popout.Body scrollable>
 						<Form layout="horizontal" labelWidth={100} component="div">
-							<FormField label="File format:">
+							<FormField label="文件格式:">
 								<SegmentedControl
 									equalWidthSegments
 									onChange={this.changeFormat}
@@ -165,11 +165,11 @@ var ListDownloadForm = React.createClass({
 									value={this.state.format}
 								/>
 							</FormField>
-							<FormField label="Columns:" style={{ marginBottom: 0 }}>
+							<FormField label="导出字段:" style={{ marginBottom: 0 }}>
 								<LabelledControl
 									autoFocus
 									checked={useCurrentColumns}
-									label="Use currently selected"
+									label="使用已选中字段"
 									onChange={this.toggleCurrentlySelectedColumns}
 									type="checkbox"
 									value
@@ -180,9 +180,9 @@ var ListDownloadForm = React.createClass({
 					</Popout.Body>
 					<Popout.Footer
 						primaryButtonAction={this.handleDownloadRequest}
-						primaryButtonLabel="Download"
+						primaryButtonLabel="下载"
 						secondaryButtonAction={() => this.togglePopout(false)}
-						secondaryButtonLabel="Cancel" />
+						secondaryButtonLabel="取消" />
 				</Popout>
 			</div>
 		);

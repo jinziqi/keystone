@@ -11,15 +11,15 @@ import {
 } from '../../../admin/client/App/elemental';
 
 const INVERTED_OPTIONS = [
-	{ label: 'Matches', value: false },
-	{ label: 'Does NOT Match', value: true },
+	{ label: '匹配', value: false },
+	{ label: '不匹配', value: true },
 ];
 
 const MODE_OPTIONS = [
-	{ label: 'On', value: 'on' },
-	{ label: 'After', value: 'after' },
-	{ label: 'Before', value: 'before' },
-	{ label: 'Between', value: 'between' },
+	{ label: '是', value: 'on' },
+	{ label: '之后', value: 'after' },
+	{ label: '之前', value: 'before' },
+	{ label: '之间', value: 'between' },
 ];
 
 const DayPickerIndicator = ({ activeInputField }) => {
@@ -56,7 +56,7 @@ var DateFilter = React.createClass({
 	},
 	getDefaultProps () {
 		return {
-			format: 'DD-MM-YYYY',
+			format: 'YYYY-MM-DD',
 			filter: getDefaultValue(),
 			value: moment().startOf('day').toDate(),
 		};

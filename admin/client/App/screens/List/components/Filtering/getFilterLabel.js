@@ -1,7 +1,7 @@
 import moment from 'moment';
 
-const DATE_FORMAT = 'MMM D YYYY';
-const DATETIME_FORMAT = 'MMM D YYYY h:mm:ss';
+const DATE_FORMAT = 'YYYY-MM-DD';
+const DATETIME_FORMAT = 'YYYY-MM-DD h:mm:ss';
 
 function getFilterLabel (field, value) {
 	const label = field.label;
@@ -112,13 +112,13 @@ function getFilterLabel (field, value) {
 		case 'url': {
 			let mode = '';
 			if (value.mode === 'beginsWith') {
-				mode = value.inverted ? 'does NOT begin with' : 'begins with';
+				mode = value.inverted ? 'does NOT begin with' : '开头是';
 			} else if (value.mode === 'endsWith') {
-				mode = value.inverted ? 'does NOT end with' : 'ends with';
+				mode = value.inverted ? 'does NOT end with' : '结尾是';
 			} else if (value.mode === 'exactly') {
-				mode = value.inverted ? 'is NOT exactly' : 'is exactly';
+				mode = value.inverted ? 'is NOT exactly' : '等于';
 			} else if (value.mode === 'contains') {
-				mode = value.inverted ? 'does NOT contain' : 'contains';
+				mode = value.inverted ? 'does NOT contain' : '包含';
 			}
 
 			return `${label} ${mode} "${value.value}"`;
@@ -151,11 +151,11 @@ function getFilterLabel (field, value) {
 function resolveNumberFormat (value, conjunction = 'is') {
 	let mode = '';
 	if (value.mode === 'equals') mode = conjunction;
-	else if (value.mode === 'gt') mode = `${conjunction} greater than`;
-	else if (value.mode === 'lt') mode = `${conjunction} less than`;
+	else if (value.mode === 'gt') mode = `${conjunction} 大于`;
+	else if (value.mode === 'lt') mode = `${conjunction} 小于`;
 
 	const formattedValue = value.mode === 'between'
-		? `is between ${value.value.min} and ${value.value.max}`
+		? `在 ${value.value.min} 和 ${value.value.max} 之间`
 		: value.value;
 
 	return `${mode} ${formattedValue}`;
@@ -165,7 +165,7 @@ function resolveDateFormat (value, format, conjunction = 'is') {
 	const joiner = value.inverted ? `${conjunction} NOT` : conjunction;
 	const mode = value.mode === 'on' ? '' : value.mode;
 	const formattedValue = value.mode === 'between'
-		? `${moment(value.after).format(format)} and ${moment(value.before).format(format)}`
+		? `${moment(value.after).format(format)} 和 ${moment(value.before).format(format)}`
 		: moment(value.value).format(format);
 
 	return `${joiner} ${mode} ${formattedValue}`;

@@ -11,8 +11,8 @@ import Kbd from '../../../admin/client/App/shared/Kbd';
 import bindFunctions from '../../utils/bindFunctions';
 
 const INVERTED_OPTIONS = [
-	{ label: 'Matches', value: false },
-	{ label: 'Does NOT Match', value: true },
+	{ label: '匹配', value: false },
+	{ label: '不匹配', value: true },
 ];
 
 function getDefaultValue () {
@@ -181,10 +181,10 @@ class SelectFilter extends Component {
 				</FormField>
 				<div style={fieldStyles}>
 					<Button size="xsmall" onClick={this.toggleAllOptions} style={{ padding: 0, width: 50 }}>
-						{indeterminate ? 'All' : 'None'}
+						{indeterminate ? '全选' : '取消全选'}
 					</Button>
 					<FormNote style={{ margin: 0 }}>
-						Hold <Kbd>{metaKeyLabel}</Kbd> to select multiple options
+						按住 <Kbd>{metaKeyLabel}</Kbd> 键可多选
 					</FormNote>
 				</div>
 				{this.renderOptions()}

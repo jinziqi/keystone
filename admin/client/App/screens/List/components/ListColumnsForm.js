@@ -96,13 +96,13 @@ var ListColumnsForm = React.createClass({
 					onClick={() => this.togglePopout(!this.state.isOpen)}
 				/>
 				<Popout isOpen={this.state.isOpen} onCancel={() => this.togglePopout(false)} relativeToID="listHeaderColumnButton">
-					<Popout.Header title="Columns" />
+					<Popout.Header title="字段" />
 					<Popout.Body scrollable>
 						<div style={formFieldStyles}>
 							<FormInput
 								autoFocus
 								onChange={this.updateSearch}
-								placeholder="Find a column..."
+								placeholder="搜索字段..."
 								value={this.state.searchString}
 							/>
 						</div>
@@ -112,9 +112,9 @@ var ListColumnsForm = React.createClass({
 					</Popout.Body>
 					<Popout.Footer
 						primaryButtonAction={this.applyColumns}
-						primaryButtonLabel="Apply"
+						primaryButtonLabel="应用"
 						secondaryButtonAction={() => this.togglePopout(false)}
-						secondaryButtonLabel="Cancel" />
+						secondaryButtonLabel="取消" />
 				</Popout>
 			</div>
 		);
