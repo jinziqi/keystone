@@ -62,6 +62,7 @@
     "mongoose": "4.7.8",
     "morgan": "1.7.0",
     "multer": "0.1.8",
+    "node-sass-middleware": "^0.11.0",
     "numeral": "2.0.4",
     "object-assign": "4.1.1",
     "qs": "4.0.0",
@@ -92,7 +93,8 @@
     "string-to-stream": "1.1.0",
     "vkey": "1.0.1",
     "watchify": "3.8.0",
-    "xhr": "2.3.3"
+    "xhr": "2.3.3",
+    "xlsx": "^0.9.3"
   },
   "devDependencies": {
     "browserify-middleware": "7.1.0",
