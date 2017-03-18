@@ -120,7 +120,7 @@ function ListHeaderToolbar ({
 							/>
 						</ButtonDivider>
 					</Section>
-					{Keystone.user.isAdmin && createIsAvailable && <Section aphroditeStyles={classes.create}>
+					{createIsAvailable && <Section aphroditeStyles={classes.create}>
 						<ButtonDivider>
 							<CreateButton
 								listName={createListName}

@@ -30,10 +30,15 @@ module.exports = function IndexRoute (req, res) {
 					}
 				})
 				lists[key].fields = fields;
+
+                lists[key].nocreate = !userRole.create;
 			}
 		});
 
-
+		var nav = _.cloneDeep(keystone.nav);
+		if(!req.user.isAdmin) {
+			nav.sections.splice(1);
+		}
 
 		var UserList = keystone.list(keystone.get('user model'));
 
@@ -56,13 +61,14 @@ module.exports = function IndexRoute (req, res) {
 			csrf: { header: {} },
 			devMode: !!process.env.KEYSTONE_DEV,
 			lists: lists,
-			nav: keystone.nav,
+			nav: nav,
 			orphanedLists: orphanedLists,
 			signoutUrl: keystone.get('signout url'),
 			user: {
 				id: req.user.id,
 				name: UserList.getDocumentName(req.user) || '(no name)',
-				isAdmin: req.user.isAdmin
+				isAdmin: req.user.isAdmin,
+				userRole: userRole
 			},
 			userList: UserList.key,
 			version: keystone.version,
