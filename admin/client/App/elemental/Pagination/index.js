@@ -12,7 +12,7 @@ class Pagination extends Component {
 		} else if (total > pageSize) {
 			let start = (pageSize * (currentPage - 1)) + 1;
 			let end = Math.min(start + pageSize - 1, total);
-			count = `正在显示 ${start} to ${end} of ${total}`;
+			count = `正在显示 ${start} 到 ${end} ，总共 ${total}`;
 		} else {
 			count = '正在显示 ' + total;
 			if (total > 1 && plural) {
