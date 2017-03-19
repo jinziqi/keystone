@@ -59,7 +59,7 @@ const ListView = React.createClass({
 				isOpen: false,
 			},
 			checkedItems: {},
-			constrainTableWidth: true,
+			constrainTableWidth: false,
 			manageMode: false,
 			showCreateForm: false,
 			showUpdateForm: false,
@@ -355,7 +355,7 @@ const ListView = React.createClass({
 		// a spinner.
 		this.setState({ selectAllItemsLoading: true });
 		var self = this;
-		this.props.currentList.loadItems({ expandRelationshipFilters: false, filters: {}, page:{size:100000} }, function (err, data) {
+		this.props.currentList.loadItems({ expandRelationshipFilters: false, filters: this.props.active.filters, page:{size:100000} }, function (err, data) {
 			data.results.forEach(item => {
 				checkedItems[item.id] = true;
 			});
