@@ -46,6 +46,7 @@ module.exports = function IndexRoute (req, res) {
 		var nav = _.cloneDeep(keystone.nav);
 		if(!req.user.isAdmin) {
 			nav.sections.splice(1);
+            nav.sections[0].lists.splice(1);
 		}
 
 		var UserList = keystone.list(keystone.get('user model'));
