@@ -15,7 +15,7 @@ module.exports = function createDynamicRouter (keystone) {
 	var SignoutRoute = require('../routes/signout');
 
 	// Use bodyParser and multer to parse request bodies and file uploads
-	router.use(bodyParser.json({}));
+	router.use(bodyParser.json({limit: '50mb'}));
 	router.use(bodyParser.urlencoded({ extended: true }));
 	router.use(multer({ includeEmptyFields: true }));
 
